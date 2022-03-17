@@ -1,16 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
-@Entity({ name: 'cats' })
-export class Cats {
-  @PrimaryGeneratedColumn()
+@Entity()
+export class UserEntity extends BaseEntity {  
+  @PrimaryGeneratedColumn()//主键装饰器
   id: number;
 
-  @Column({ name: 'first_name' })
-  firstName: string;
-
-  @Column({ name: 'last_name' })
-  lastName: string;
-
-  @Column({ name: 'is_active', default: true })
-  isActive: boolean;
+  @Column({type:'varchar', name: 'name'}) // 要跟数据库对应
+  name: string;
 }

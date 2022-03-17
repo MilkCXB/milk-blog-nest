@@ -3,6 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+// 子模块加载
+import { UserModule } from './modules/user/user.module'; 
+
 
 @Module({
   imports: [
@@ -12,10 +15,11 @@ import { AppService } from './app.service';
       port: 3306,
       username: 'root',
       password: 'root',
-      entities: [],
       database: 'text',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],  //检查实体文件
       synchronize: true,
-    })
+    }),
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
